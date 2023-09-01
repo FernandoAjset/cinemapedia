@@ -1,5 +1,4 @@
-import 'package:cinemapedia/domain/entities/movie.dart';
-
+import '../entities/movie.dart';
 
 abstract class MoviesDatasource {
 

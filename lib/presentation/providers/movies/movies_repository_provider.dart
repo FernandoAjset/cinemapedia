@@ -5,5 +5,6 @@ import '../../../infraestructure/repositories/movie_repository_impl.dart';
 
 // Este repositorio es inmutable
 final movieRepositoryProvider = Provider((ref) {
-  return MovieRepositoryImpl(MoviedbDatasource());
+  final moviedbDatasource = MoviedbDatasource();
+  return MovieRepositoryImpl(moviedbDatasource);
 });

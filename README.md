@@ -35,3 +35,16 @@ StateNotifierProvider
 Notifiers
 
 Mappers
+
+
+consultas a TheMovieDB para obtener
+
+Películas populares
+
+Películas en cines
+
+Películas mejor calificadas
+
+Películas que próximamente estarán en cines
+
+ scroll horizontal infinito, slivers.
