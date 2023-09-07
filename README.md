@@ -48,3 +48,5 @@ Películas mejor calificadas
 Películas que próximamente estarán en cines
 
  scroll horizontal infinito, slivers.
+
+ pasar parámetros, loaders, slivers
