@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -144,32 +145,36 @@ class _ActorByMovie extends ConsumerWidget {
               padding: const EdgeInsets.all(8.0),
               width: 135,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.network(
-                    actor.profilePath,
-                    height: 180,
-                    width: 135,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  actor.name,
-                  maxLines: 2,
-                  textAlign: TextAlign.center,
-                ),
-                Text(
-                  actor.caracter ?? '',
-                  maxLines: 2,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
-                ),
-              ]),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FadeInRight(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.network(
+                          actor.profilePath,
+                          height: 180,
+                          width: 135,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      actor.name,
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      actor.caracter ?? '',
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          overflow: TextOverflow.ellipsis),
+                    ),
+                  ]),
             );
           }),
     );
@@ -197,7 +202,14 @@ class _CustomSliverAppBar extends StatelessWidget {
         background: Stack(
           children: [
             SizedBox.expand(
-                child: Image.network(movie.posterPath, fit: BoxFit.cover)),
+                child: Image.network(
+              movie.posterPath,
+              fit: BoxFit.cover,
+              loadingBuilder: (context, child, loadingProgess) {
+                if (loadingProgess != null) return const SizedBox();
+                return FadeIn(child: child);
+              },
+            )),
             const SizedBox.expand(
               child: DecoratedBox(
                   decoration: BoxDecoration(
