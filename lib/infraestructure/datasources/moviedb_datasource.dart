@@ -8,17 +8,21 @@ import 'package:dio/dio.dart';
 
 class MoviedbDatasource extends MoviesDatasource {
   final dio = Dio(BaseOptions(
-    connectTimeout:const Duration(seconds: 60),
-    receiveTimeout:const Duration(seconds: 60),
-    sendTimeout: const Duration(seconds: 60),
-    maxRedirects: 10,
+      connectTimeout: const Duration(seconds: 60),
+      receiveTimeout: const Duration(seconds: 60),
+      sendTimeout: const Duration(seconds: 60),
+      maxRedirects: 10,
       baseUrl: 'https://api.themoviedb.org/3',
+      // agregar header con token de acceso
+      headers: {
+        'Authorization': 'Bearer ${Environment.movieDbToken}',
+        'accept': 'application/json',
+      },
       queryParameters: {
-        'api_key': Environment.movieDbKey,
         'language': 'es-MX'
       }));
 
-  List<Movie> _jsonToMovie(Map<String, dynamic> json) {
+  List<Movie> _jsonToMovie(Map<String, dynamic> json) { 
     final movieDBResponse = MovieDbResponse.fromJson(json);
 
     final List<Movie> movies = movieDBResponse.results

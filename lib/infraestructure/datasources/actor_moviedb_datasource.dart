@@ -13,8 +13,12 @@ class ActorMovieDbDataSource implements ActorsDatasource {
       sendTimeout: const Duration(seconds: 60),
       maxRedirects: 10,
       baseUrl: 'https://api.themoviedb.org/3',
+      // agregar header con token de acceso
+      headers: {
+        'Authorization': 'Bearer ${Environment.movieDbToken}',
+        'accept': 'application/json',
+      },
       queryParameters: {
-        'api_key': Environment.movieDbKey,
         'language': 'es-MX'
       }));
 
