@@ -7,7 +7,7 @@ class MovieMapper {
       adult: movieDb.adult,
       backdropPath: (movieDb.backdropPath != '')
           ? 'https://image.tmdb.org/t/p/w500${movieDb.backdropPath}'
-          : 'https://sd.keepcalms.com/i-w600/keep-calm-poster-not-found.jpg',
+          : 'https://resourcesdev.blob.core.windows.net/resources-web/proyectos/poster-not-found.png',
       genreIds: movieDb.genreIds.map((e) => e.toString()).toList(),
       id: movieDb.id,
       originalLanguage: movieDb.originalLanguage,
@@ -27,7 +27,7 @@ class MovieMapper {
       adult: movie.adult,
       backdropPath: (movie.backdropPath != '')
           ? 'https://image.tmdb.org/t/p/w500${movie.backdropPath}'
-          : 'https://sd.keepcalms.com/i-w600/keep-calm-poster-not-found.jpg',
+          : 'https://resourcesdev.blob.core.windows.net/resources-web/proyectos/poster-not-found.png',
       genreIds: movie.genres.map((e) => e.name.toString()).toList(),
       id: movie.id,
       originalLanguage: movie.originalLanguage,
@@ -36,7 +36,7 @@ class MovieMapper {
       popularity: movie.popularity,
       posterPath: (movie.posterPath != '')
           ? 'https://image.tmdb.org/t/p/w500${movie.posterPath}'
-          : 'https://sd.keepcalms.com/i-w600/keep-calm-poster-not-found.jpg',
+          : 'https://resourcesdev.blob.core.windows.net/resources-web/proyectos/poster-not-found.png',
       releaseDate: movie.releaseDate,
       title: movie.title,
       video: movie.video,

@@ -7,7 +7,7 @@ class ActorMapper{
   name: cast.name,
   profilePath:cast.profilePath!=null
   ?'https://image.tmdb.org/t/p/w500${cast.profilePath}'
-  :'https://sd.keepcalms.com/i-w600/keep-calm-poster-not-found.jpg',
+  :'https://resourcesdev.blob.core.windows.net/resources-web/proyectos/poster-not-found.png',
   id:cast.id
   );
 }
