@@ -7,21 +7,14 @@ import 'package:dio/dio.dart';
 import '../../config/constants/environment.dart';
 
 class ActorMovieDbDataSource implements ActorsDatasource {
-  final dio = Dio(BaseOptions(
-      connectTimeout: const Duration(seconds: 60),
-      receiveTimeout: const Duration(seconds: 60),
-      sendTimeout: const Duration(seconds: 60),
-      maxRedirects: 10,
-      baseUrl: 'https://api.themoviedb.org/3',
-      // agregar header con token de acceso
-      headers: {
-        'Authorization': 'Bearer ${Environment.movieDbToken}',
-        'accept': 'application/json',
-      },
-      queryParameters: {
-        'language': 'es-MX'
-      }));
-
+final dio = Dio(BaseOptions(
+    baseUrl: 'https://api.themoviedb.org/3',
+    queryParameters: {
+      'api_key': Environment.movieDbKey,
+      'language': 'es-MX'
+    }
+  ));
+  
   List<Actor> _jsonToActor(Map<String, dynamic> json) {
     final actorsDBResponse = CreditsResponse.fromJson(json);
 // obtener la lista de Cast desde la respuesta de fromJson y usando el mapper

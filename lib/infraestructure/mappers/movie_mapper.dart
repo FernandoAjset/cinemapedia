@@ -16,7 +16,7 @@ class MovieMapper {
       popularity: movieDb.popularity,
       posterPath: (movieDb.posterPath != '')
           ? 'https://image.tmdb.org/t/p/w500${movieDb.posterPath}'
-          : 'no-poster',
+          : 'https://resourcesdev.blob.core.windows.net/resources-web/proyectos/poster-not-found.png',
       releaseDate: movieDb.releaseDate!=null ?movieDb.releaseDate! :DateTime.now(),
       title: movieDb.title,
       video: movieDb.video,
