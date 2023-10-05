@@ -7,15 +7,14 @@ import 'package:cinemapedia/infraestructure/models/movie_details.dart';
 import 'package:dio/dio.dart';
 
 class MoviedbDatasource extends MoviesDatasource {
-final dio = Dio(BaseOptions(
-    baseUrl: 'https://api.themoviedb.org/3',
-    queryParameters: {
-      'api_key': Environment.movieDbKey,
-      'language': 'es-MX'
-    }
-  ));
+  final dio = Dio(BaseOptions(
+      baseUrl: 'https://api.themoviedb.org/3',
+      queryParameters: {
+        'api_key': Environment.movieDbKey,
+        'language': 'es-MX'
+      }));
 
-  List<Movie> _jsonToMovie(Map<String, dynamic> json) { 
+  List<Movie> _jsonToMovie(Map<String, dynamic> json) {
     final movieDBResponse = MovieDbResponse.fromJson(json);
 
     final List<Movie> movies = movieDBResponse.results
@@ -65,10 +64,11 @@ final dio = Dio(BaseOptions(
     final Movie movie = MovieMapper.movieDetailsToEntity(movieDetails);
     return movie;
   }
-  
+
   @override
   Future<List<Movie>> getMovieBySearchParam(String param) async {
-        final response =
+    if (param.isEmpty) return [];
+    final response =
         await dio.get('/search/movie', queryParameters: {'query': param});
     return _jsonToMovie(response.data);
   }
