@@ -45,3 +45,10 @@ Sección de búsquedas y trabajar con el SearchDelegate.
 - Builders
 - DRY
 - Providers
+
+- Navegación entre tabs
+- Preservar estado
+- Go_Router
+- Redirect
+- ShellRoute
+- SubShellRoutes
