@@ -1,16 +1,17 @@
 import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   static const name = 'home-screen';
-  final Widget childView;
-  const HomeScreen({super.key, required this.childView});
+  final StatefulNavigationShell currentChild;
+  const HomeScreen({super.key, required this.currentChild});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: childView,
-      bottomNavigationBar: const CustomButtomNavigation(),
+      body: currentChild,
+      bottomNavigationBar: CustomButtomNavigation(currentChild: currentChild),
     );
   }
 }
