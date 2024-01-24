@@ -13,10 +13,24 @@ class FavoritesView extends ConsumerStatefulWidget {
 }
 
 class FavoritesViewState extends ConsumerState<FavoritesView> {
+  bool isLastPage = false;
+  bool isLoading = false;
+
   @override
   void initState() {
     super.initState();
-    ref.read(favoriteMoviesProvider.notifier).loadNextPage();
+    loadNextPage();
+  }
+
+  void loadNextPage() async {
+    if (isLastPage || isLoading) return;
+    isLoading = true;
+    final movies =
+        await ref.read(favoriteMoviesProvider.notifier).loadNextPage();
+    isLoading = false;
+    if (movies.isEmpty) {
+      isLastPage = true;
+    }
   }
 
   @override
@@ -30,6 +44,7 @@ class FavoritesViewState extends ConsumerState<FavoritesView> {
     // Convertir de mapa a lista de movie
     final List<Movie> moviesList = movies.values.toList();
 
-    return Scaffold(body: MovieMasonry(movies: moviesList));
+    return Scaffold(
+        body: MovieMasonry(loadNextPage: loadNextPage, movies: moviesList));
   }
 }
