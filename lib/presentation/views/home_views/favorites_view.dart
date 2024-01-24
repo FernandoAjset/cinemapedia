@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../domain/entities/movie.dart';
 import '../../providers/providers.dart';
@@ -43,6 +44,37 @@ class FavoritesViewState extends ConsumerState<FavoritesView> {
     }
     // Convertir de mapa a lista de movie
     final List<Movie> moviesList = movies.values.toList();
+
+    if (moviesList.isEmpty) {
+      final colors = Theme.of(context).colorScheme;
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.favorite_outline_sharp,
+              size: 60,
+              color: colors.primary,
+            ),
+            Text(
+              'Upss!!',
+              style: TextStyle(fontSize: 30, color: colors.primary),
+            ),
+            const Text(
+              'Aun no tienes películas favoritas.',
+              style: TextStyle(fontSize: 20, color: Colors.black45),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            FilledButton.tonal(
+                onPressed: () => context.go('/'),
+                child: const Text('Empieza a buscar'))
+          ],
+        ),
+      );
+    }
 
     return Scaffold(
         body: MovieMasonry(loadNextPage: loadNextPage, movies: moviesList));
